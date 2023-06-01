@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f64445, #7a00c7);
+}
+
+ul.detail.active {
+  display: block;
+  width: inherit
+}
