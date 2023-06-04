@@ -1,8 +1,5 @@
 /** @jsxImportSource @emotion/react */
-// axios.defaults.headers['access-control-allow-credentials'] = true;
-// axios.defaults.headers['Access-Control-Allow-Origin'] = 'https://superheroapi.com';
-// axios.defaults.withCredentials = false;
-// const remote = axios.create();
+import axios from "axios"
 
 const defaultUrl = 'https://superheroapi.com/api.php/3423066867906256/search/hulk'
 
@@ -34,9 +31,8 @@ export interface HeroDataType {
   }
 }
 export const fetchHero = async ():Promise<HeroDataType> => {
-  const response = await fetch(defaultUrl);
-  const data = await response.json();
-  const result = data.results[1];
+  const data = await axios.get(defaultUrl);
+  const result = data.data.results[1];
 
   return {
     id: result.id,
