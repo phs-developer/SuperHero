@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import axios from "axios"
 
-const defaultUrl = 'https://superheroapi.com/api.php/3423066867906256/search/hulk'
+
+const defaultUrl = 'https://superheroapi.com/api.php/3423066867906256/search/'
 
 export interface HeroDataType {
   id: number,
@@ -30,8 +31,9 @@ export interface HeroDataType {
     publisher: string
   }
 }
-export const fetchHero = async ():Promise<HeroDataType> => {
-  const data = await axios.get(defaultUrl);
+export const fetchHero = async (name:string):Promise<HeroDataType | string> => {
+  const data = await axios.get(defaultUrl+name);
+  if(data.data.error) return '없음';
   const result = data.data.results[1];
 
   return {
@@ -44,8 +46,8 @@ export const fetchHero = async ():Promise<HeroDataType> => {
       gender: result.appearance.gender,
       'eye-color': result.appearance['eye-color'],
       'hair-color': result.appearance['hair-color'],
-      height: result.appearance.height[1], // 배열?
-      weight: result.appearance.weight[1] //  배열? 
+      height: result.appearance.height[1],
+      weight: result.appearance.weight[1]
     },
     powerstats: {
       combat: result.powerstats.combat,
