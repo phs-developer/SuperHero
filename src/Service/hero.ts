@@ -34,7 +34,7 @@ export interface HeroDataType {
 export const fetchHero = async (name:string):Promise<HeroDataType | string> => {
   const data = await axios.get(defaultUrl+name);
   if(data.data.error) return '없음';
-  const result = data.data.results[1];
+  const result = data.data.results[0];
 
   return {
     id: result.id,
