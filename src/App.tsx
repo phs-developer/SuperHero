@@ -1,64 +1,78 @@
 /** @jsxImportSource @emotion/react */ //-> emotion 문자열로 변환되지 않고 전달되는 이슈 방지
+import './App.css';
 import {css} from '@emotion/react'
 import styled from '@emotion/styled';
 import SearchBar from './Common/SearchBar';
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Favorite from './Favorite/Favorite';
-import { useEffect } from 'react';
-import { fetchHero } from './Service/hero';
+import MyHeroStore, { MyHero } from './store/myhero';
+import { useContext } from 'react';
+
 
 function App() {
-  // useEffect(()=>{
-  //   (async ()=> {
-  //     const res = await fetchHero();
-  //     console.log(res);
-  //   })()
-  // },[])
-
+  // const value = useContext(MyHero);
+  // console.log(value)
 
   const Main = () => {
     const background = css`
-      background-color: black;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      position: relative;
+    `
+    const BackImg = css`
+      position: absolute;
+      top:0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-image: url(img/background.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      cursor: pointer;
+      z-index: -1;
     `
     const Section = styled.section`
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 0px 20px;
+      align-items: flex-end;
+      padding-right: 5%;
+      @media screen and (max-width:768px) {
+        align-items: center;
+        padding: 0;
+      }
     `
     const Title = styled.h1`
-      color: red;
+      color: white;
       font-size: 50px;
-      text-align: center;
-      text-shadow: .5px .5px 1px white, -.5px -.5px 1px white;
+      text-shadow: 3px 3px 5px black, -3px -3px 5px black;
       margin-bottom: 30px;
       @media screen and (max-width:768px) {
-        margin-bottom: 100px;
+        text-align: center;
       }
     `
 
     return (
       <div css={background}>
+        <div css={BackImg}/>
         <Section>
-          <Title className='title'>What's your favorite hero?</Title>
+          <Title className='title'>who is your hero?</Title>
           <SearchBar />
         </Section>
       </div>
     );
   }
 
-
   return (
-    <Routes>
-      <Route path='/' element = {<Main />} />
-      <Route path='/favorite/:name' element = {<Favorite />} />
-    </Routes>
+    <MyHeroStore>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element = {<Main />} />
+          <Route path={`/favorite`} element = {<Favorite />} />
+        </Routes>
+      </BrowserRouter>
+    </MyHeroStore>
   );
 }
 

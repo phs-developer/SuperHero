@@ -5,12 +5,8 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #f64445, #7a00c7);
-}
-
 ul.detail.active {
   display: block;
-  width: inherit
+  width: inherit;
+  height: calc(100vh-80px);
 }
