@@ -9,17 +9,19 @@ import { MyHero } from '../store/myhero';
 
 
 const Favorite = () => {
-  const [data, setData] = useState<HeroDataType | null> (null);
+  const [data, setData] = useState<HeroDataType | null | string> ('loading');
   const value = useContext(MyHero);
   const name = value ? value.name : 'batman';
 
   useEffect(() => {
+    setData('loading');
     (async ()=> {
       const result = await fetchHero(name);
-      typeof(result)==='string' ? setData(null) : setData(result);
+      result ? setData(result) : setData(null);
     })()
   },[name])
-
+  
+  console.log(value)
   let navigate = useNavigate();
   function handleHomePage () {
     navigate('/')
@@ -30,14 +32,19 @@ const Favorite = () => {
     // 상세 데이터 오픈
     function handleDetailView(event:React.MouseEvent<HTMLButtonElement>) {
       function hideAllStats() {
+        detail.forEach(e => {
+          e.classList.remove('active');
+        })
         stats.forEach(e => {
           e.classList.remove('active');
         })
       }
       function showCurrentStats() {
         currentStats?.classList.add('active');
+        event.currentTarget.classList.add('active');
       }   
-      const stats = document.querySelectorAll('.detail')
+      const detail = document.querySelectorAll('.detail')
+      const stats = document.querySelectorAll('.stats')
       const currentStats = document.querySelector(`.${event.currentTarget.name}`)
   
       hideAllStats();
@@ -46,29 +53,41 @@ const Favorite = () => {
 
     const Section = styled.section`
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-around;
+      gap: 20px;
       padding: 80px 50px 20px;
+      @media screen and (max-width:1024px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width:768px) {
+        padding: 20px;
+      }
     `
     const HeroName = styled.p`
       color: white;
       font-size: 3rem;
+      margin-bottom: 1.5rem;
     `
     const Img = styled.img`
-      min-width: 400px;
-      margin: 30px 0px 60px;
+      min-width: 200px;
+      @media screen and (max-width:1024px) {
+        margin-bottom: 50px;
+      }
       @media screen and (max-width:768px) {
         width: 100%;
         min-width: 300px;
       }
     `
     const Article = styled.article`
-      min-width: 580px;
-      width: 100%;
-      margin-bottom: 70px;
+      min-width: 500px;
+      width: 650px;
+      min-height: 100%;
       @media screen and (max-width:768px) {
+        width: 100%;
         min-width: 300px;
+        margin-bottom: 70px;
       }
     `
     const Stats = styled.div`
@@ -83,10 +102,15 @@ const Favorite = () => {
         background: none;
         border: 0;
         color: white;
+        cursor: pointer;
+      
         border-bottom: 2px solid gray;
         &:hover {
           border-bottom:2px solid red;
         }
+      }
+      .active {
+        border-bottom:2px solid red;
       }
       @media screen and (max-width:768px) {
         flex-direction: column;
@@ -117,47 +141,55 @@ const Favorite = () => {
           flex-wrap: wrap;
         }
       }
-    `
-
-    return (
-      <Section>
-          <HeroName>{data?.name}</HeroName>
-          <Img src={data?.image.url} alt='흠'/>
-          <Article>
-            <Stats>
-              <button type='button' name="appearance" onClick={handleDetailView}>APPEARANCE</button>
-              <button type='button' name="powerstats" onClick={handleDetailView}>POWERSTATS</button>
-              <button type='button' name="biography" onClick={handleDetailView}>BIOGRAPHY</button>
-            </Stats>
-            <div>
-              <StatsBody className='appearance detail active'>
-                <li><img src='/img/yellow.png' alt='icon'/>Eye color<span>{data?.appearance['eye-color']}</span></li>
-                <li><img src='/img/yellow.png' alt='icon'/>Gender<span>{data?.appearance.gender}</span></li>
-                <li><img src='/img/yellow.png' alt='icon'/>Hair color<span>{data?.appearance['hair-color']}</span></li>
-                <li><img src='/img/yellow.png' alt='icon'/>Height<span>{data?.appearance.height}</span></li>
-                <li><img src='/img/yellow.png' alt='icon'/>Weight<span>{data?.appearance.weight}</span></li>
-              </StatsBody>
-              <StatsBody className='powerstats detail'>
-                <li><img src='/img/red.png' alt='icon'/>Combat<span>{data?.powerstats.combat}</span></li>
-                <li><img src='/img/red.png' alt='icon'/>Durability<span>{data?.powerstats.durability}</span></li>
-                <li><img src='/img/red.png' alt='icon'/>Power<span>{data?.powerstats.power}</span></li>
-                <li><img src='/img/red.png' alt='icon'/>Speed<span>{data?.powerstats.speed}</span></li>
-                <li><img src='/img/red.png' alt='icon'/>Strength<span>{data?.powerstats.strength}</span></li>
-              </StatsBody>
-              <StatsBody className='biography detail'>
-                <li><img src='/img/blue.png' alt='icon'/>Alignment<span>{data?.biography.alignment}</span></li>
-                <li><img src='/img/blue.png' alt='icon'/>Full name<span>{data?.biography['full-name']}</span></li>
-                <li><img src='/img/blue.png' alt='icon'/>Publisher<span>{data?.biography.publisher}</span></li>
-              </StatsBody>
-            </div>
-          </Article>
+      `
+    if(typeof(data)==='string') {
+      return (
+        <Section>
+          <h1>Loading...</h1>
         </Section>
-    )
+      )
+    } else {
+      return (
+        <Section>
+            <Img src={data?.image.url} alt='흠'/>
+            <Article>
+              <HeroName>{data?.name}</HeroName>
+              <Stats>
+                <button className='stats active' type='button' name="appearance"  onClick={handleDetailView}>APPEARANCE</button>
+                <button className='stats' type='button' name="powerstats" onClick={handleDetailView}>POWERSTATS</button>
+                <button className='stats' type='button' name="biography" onClick={handleDetailView}>BIOGRAPHY</button>
+              </Stats>
+              <div>
+                <StatsBody className='appearance detail active'>
+                  <li><img src='/img/yellow.png' alt='icon'/>Eye color<span>{data?.appearance['eye-color']}</span></li>
+                  <li><img src='/img/yellow.png' alt='icon'/>Gender<span>{data?.appearance.gender}</span></li>
+                  <li><img src='/img/yellow.png' alt='icon'/>Hair color<span>{data?.appearance['hair-color']}</span></li>
+                  <li><img src='/img/yellow.png' alt='icon'/>Height<span>{data?.appearance.height}</span></li>
+                  <li><img src='/img/yellow.png' alt='icon'/>Weight<span>{data?.appearance.weight}</span></li>
+                </StatsBody>
+                <StatsBody className='powerstats detail'>
+                  <li><img src='/img/red.png' alt='icon'/>Combat<span>{data?.powerstats.combat}</span></li>
+                  <li><img src='/img/red.png' alt='icon'/>Durability<span>{data?.powerstats.durability}</span></li>
+                  <li><img src='/img/red.png' alt='icon'/>Power<span>{data?.powerstats.power}</span></li>
+                  <li><img src='/img/red.png' alt='icon'/>Speed<span>{data?.powerstats.speed}</span></li>
+                  <li><img src='/img/red.png' alt='icon'/>Strength<span>{data?.powerstats.strength}</span></li>
+                </StatsBody>
+                <StatsBody className='biography detail'>
+                  <li><img src='/img/blue.png' alt='icon'/>Alignment<span>{data?.biography.alignment}</span></li>
+                  <li><img src='/img/blue.png' alt='icon'/>Full name<span>{data?.biography['full-name']}</span></li>
+                  <li><img src='/img/blue.png' alt='icon'/>Publisher<span>{data?.biography.publisher}</span></li>
+                </StatsBody>
+              </div>
+            </Article>
+          </Section>
+      )
+    }
+
   }
   // data 실패
   const FailSection = () => {
     const Section = styled.section`
-      height: 100vh;
+      height: 82vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -166,18 +198,18 @@ const Favorite = () => {
       text-align:center;
       font-size: 3rem;
     `
+
     return (
       <Section>
-        <FailContent>No hero found. <br />
-          please search again</FailContent>
+        <FailContent>No hero found.</FailContent>
       </Section>
     )
   }
 
-
-
   const background = css`
-    padding: 70px;
+    padding: 40px;
+    min-height: calc(100vh - 80px);
+    background: linear-gradient(to bottom right, #f64445, #7a00c7);
     @media screen and (max-width:768px) {
       padding: 30px;
     }
@@ -186,6 +218,7 @@ const Favorite = () => {
     cursor: pointer;
   `
   const Container = styled.div`
+    min-height: 90vh;
     background-color: black;
     border-radius: 10px;
     box-shadow: 1px 1px 10px rgb(32, 32, 32);
@@ -207,14 +240,14 @@ const Favorite = () => {
 
   return (
     <div css={background}>
-      <Container  className='back'>
+      <Container>
         <Header>
           <h1 css={cursor} onClick={handleHomePage}>
             Super<span css={hero}>Hero</span>
           </h1>
           <SearchBar />
         </Header>
-        {data ? <SuccessSection /> : <FailSection />}
+        {data===null ? <FailSection /> : <SuccessSection />}
       </Container>
     </div>
   )
