@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {MyHero} from '../store/myhero';
+import { SearchListData } from '../Service/hero';
 
 // onchange이벤트 re-render 발생으로 input의 아웃포커싱 이슈 처리를 위해 styled-component를 외부로 꺼냄 
 const Form = styled.form`
-  border-radius: 100px;
+  position: relative;
+  border-radius: 10px;
   max-width: 350px;
   display: flex;
   justify-content: space-between;
@@ -32,26 +34,80 @@ const Btn = styled.button`
     width: 20px;
   }
 `
+const SearchList = styled.ul`
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 295px;
+  color: white;
+  border-radius: 10px;
+  background: black;
+  padding-left: 15px;
+  li{
+    margin: 15px 0px;
+    display: flex;
+    align-items: center;
+    img{
+      width: 40px;
+      margin-right: 20px;
+    }
+  }
+`
+
+type list = {
+  id: number,
+  image: {
+    url: string
+  },
+  name: string
+}[]
 
 const SearchBar = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState<string>('');
+  const [list, setList] = useState<list | null>(null);
   const value = useContext(MyHero);
+  const searchList = document.querySelector<HTMLElement>('.search-list');
+  useEffect(()=> {
+    (async()=> {
+      const result = await SearchListData(name);
+      setList(result)
+    })()
+  },[name])
 
+  //키워드 있을 경우에만 노출
+  if(searchList) {
+    searchList.style.display = name.length>=1 ? 'block' : 'none';
+  }
+
+  //키워드 감지 핸들러
   function handleGetName(e:React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value);
   }
   
+  //상세페이지 이동
   let navigate = useNavigate();
   function handleFavoritePage (e:React.MouseEvent<HTMLButtonElement>) {
+    //submit과 navigate의 충돌 방지 --> preventDefault()
     e.preventDefault();
     value?.changeName(name);
     navigate(`/favorite`);
-}
+  }
 
   return (
     <Form>
-      <Input type="text" placeholder='Search hero name!' name="search" value={name} onChange={handleGetName}/>
+      <Input type="text" placeholder='Search hero name!' name="search" value={name} onChange={handleGetName} className='search-box'/>
       <Btn type="submit" onClick={handleFavoritePage}><img src='/img/search.png' alt='검색'/></Btn>
+      <SearchList className='search-list'>
+        {list ? list.map((e)=> {
+          return(
+            <li key={e.id}>
+              <img src={e.image.url} alt={e.name}/> {e.name}
+            </li>
+
+          )
+        }) : <li></li>}
+      </SearchList>
     </Form>
   )
 
