@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import axios from "axios"
 
-
 const defaultUrl = 'https://superheroapi.com/api.php/3423066867906256/search/'
 
 export interface HeroDataType {
@@ -31,6 +30,8 @@ export interface HeroDataType {
     publisher: string
   }
 }
+
+// 상세데이터
 export const fetchHero = async (name:string):Promise<HeroDataType | string> => {
   const data = await axios.get(defaultUrl+name);
   if(data.data.error) return '없음';
@@ -63,4 +64,23 @@ export const fetchHero = async (name:string):Promise<HeroDataType | string> => {
       publisher: result.biography.publisher
     }
   }
+}
+
+// 자동완성기능 데이터
+export const SearchListData = async (name:string) => {
+  const data = await axios({
+    method: 'get',
+    url: (defaultUrl+name),
+    timeout: 2000,
+  })
+  if(data.data.error) return null
+
+  const result = data.data.results;
+  // 3개만 추출해서 보냄
+  if(result.length>3) {
+    return result.slice(0, 3)
+  } else {
+    return result
+  }
+
 }

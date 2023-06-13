@@ -48,10 +48,14 @@ const SearchList = styled.ul`
     margin: 15px 0px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     img{
       width: 40px;
       margin-right: 20px;
     }
+  }
+  @media screen and (max-width:768px) {
+    width: 245px;
   }
 `
 
@@ -85,23 +89,29 @@ const SearchBar = () => {
     setName(e.target.value);
   }
   
-  //상세페이지 이동
   let navigate = useNavigate();
+  // 검색으로 이동
   function handleFavoritePage (e:React.MouseEvent<HTMLButtonElement>) {
     //submit과 navigate의 충돌 방지 --> preventDefault()
     e.preventDefault();
     value?.changeName(name);
     navigate(`/favorite`);
   }
+  // 자동완성 클릭으로 이동
+  function handleNavigate (e:React.MouseEvent<HTMLLIElement>) {
+    const text = (e.target as HTMLLIElement).innerText;
+    value?.changeName(text);
+    navigate('/favorite');
+  }
 
   return (
     <Form>
-      <Input type="text" placeholder='Search hero name!' name="search" value={name} onChange={handleGetName} className='search-box'/>
+      <Input type="text" placeholder='Search hero english name!' autoComplete='off' name="search" value={name} onChange={handleGetName} className='search-box'/>
       <Btn type="submit" onClick={handleFavoritePage}><img src='/img/search.png' alt='검색'/></Btn>
       <SearchList className='search-list'>
         {list ? list.map((e)=> {
           return(
-            <li key={e.id}>
+            <li key={e.id} onClick={handleNavigate}>
               <img src={e.image.url} alt={e.name}/> {e.name}
             </li>
 
