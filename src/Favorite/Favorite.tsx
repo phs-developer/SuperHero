@@ -21,7 +21,6 @@ const Favorite = () => {
     })()
   },[name])
   
-  console.log(value)
   let navigate = useNavigate();
   function handleHomePage () {
     navigate('/')
@@ -121,7 +120,6 @@ const Favorite = () => {
       }
     `
     const StatsBody = styled.ul`
-      list-style: none;
       display:none;
       font-size: 1.3rem;
       letter-spacing: 1.5px;
