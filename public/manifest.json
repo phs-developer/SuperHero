@@ -1,6 +1,6 @@
 {
   "short_name": "SuperHero",
-  "name": "what's your favorite hero?",
+  "name": "who is your hero?",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
