@@ -71,6 +71,7 @@ const Favorite = () => {
     `
     const Img = styled.img`
       min-width: 200px;
+      min-height: 640px;
       @media screen and (max-width:1024px) {
         margin-bottom: 50px;
       }
