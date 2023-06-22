@@ -120,6 +120,12 @@ const Favorite = () => {
           }
       }
     `
+    const active = css`
+      .active {
+        display: block;
+        width: inherit;
+      }
+    `
     const StatsBody = styled.ul`
       display:none;
       font-size: 1.3rem;
@@ -158,7 +164,7 @@ const Favorite = () => {
                 <button className='stats' type='button' name="powerstats" onClick={handleDetailView}>POWERSTATS</button>
                 <button className='stats' type='button' name="biography" onClick={handleDetailView}>BIOGRAPHY</button>
               </Stats>
-              <div>
+              <div css={active}>
                 <StatsBody className='appearance detail active'>
                   <li><img src='./img/yellow.png' alt='icon'/>Eye color<span>{data?.appearance['eye-color']}</span></li>
                   <li><img src='./img/yellow.png' alt='icon'/>Gender<span>{data?.appearance.gender}</span></li>

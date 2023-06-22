@@ -6,9 +6,10 @@
   list-style: none;
 
 }
-
+/* 
 ul.detail.active {
   display: block;
   width: inherit;
   height: calc(100vh-80px);
-}
+
+} */
