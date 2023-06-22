@@ -5,13 +5,10 @@ import styled from '@emotion/styled';
 import SearchBar from './Common/SearchBar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Favorite from './Favorite/Favorite';
-import MyHeroStore, { MyHero } from './store/myhero';
-import { useContext } from 'react';
+import MyHeroStore from './store/myhero';
 
 
 function App() {
-  // const value = useContext(MyHero);
-  // console.log(value)
 
   const Main = () => {
     const background = css`
