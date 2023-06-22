@@ -24,7 +24,7 @@ function App() {
       left: 0;
       height: 100vh;
       width: 100vw;
-      background-image: url(img/background.jpg);
+      background-image: url(./img/background.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       cursor: pointer;
@@ -66,7 +66,7 @@ function App() {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path='/' element = {<Main />} />
-          <Route path={`/favorite`} element = {<Favorite />} />
+          <Route path='/favorite' element = {<Favorite />} />
         </Routes>
       </BrowserRouter>
     </MyHeroStore>

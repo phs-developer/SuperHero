@@ -107,7 +107,7 @@ const SearchBar = () => {
   return (
     <Form>
       <Input type="text" placeholder='Search hero english name!' autoComplete='off' name="search" value={name} onChange={handleGetName} className='search-box'/>
-      <Btn type="submit" onClick={handleFavoritePage}><img src='/img/search.png' alt='검색'/></Btn>
+      <Btn type="submit" onClick={handleFavoritePage}><img src='./img/search.png' alt='검색'/></Btn>
       <SearchList className='search-list'>
         {list ? list.map((e)=> {
           return(

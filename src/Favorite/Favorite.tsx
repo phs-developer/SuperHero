@@ -159,23 +159,23 @@ const Favorite = () => {
               </Stats>
               <div>
                 <StatsBody className='appearance detail active'>
-                  <li><img src='/img/yellow.png' alt='icon'/>Eye color<span>{data?.appearance['eye-color']}</span></li>
-                  <li><img src='/img/yellow.png' alt='icon'/>Gender<span>{data?.appearance.gender}</span></li>
-                  <li><img src='/img/yellow.png' alt='icon'/>Hair color<span>{data?.appearance['hair-color']}</span></li>
-                  <li><img src='/img/yellow.png' alt='icon'/>Height<span>{data?.appearance.height}</span></li>
-                  <li><img src='/img/yellow.png' alt='icon'/>Weight<span>{data?.appearance.weight}</span></li>
+                  <li><img src='./img/yellow.png' alt='icon'/>Eye color<span>{data?.appearance['eye-color']}</span></li>
+                  <li><img src='./img/yellow.png' alt='icon'/>Gender<span>{data?.appearance.gender}</span></li>
+                  <li><img src='./img/yellow.png' alt='icon'/>Hair color<span>{data?.appearance['hair-color']}</span></li>
+                  <li><img src='./img/yellow.png' alt='icon'/>Height<span>{data?.appearance.height}</span></li>
+                  <li><img src='./img/yellow.png' alt='icon'/>Weight<span>{data?.appearance.weight}</span></li>
                 </StatsBody>
                 <StatsBody className='powerstats detail'>
-                  <li><img src='/img/red.png' alt='icon'/>Combat<span>{data?.powerstats.combat}</span></li>
-                  <li><img src='/img/red.png' alt='icon'/>Durability<span>{data?.powerstats.durability}</span></li>
-                  <li><img src='/img/red.png' alt='icon'/>Power<span>{data?.powerstats.power}</span></li>
-                  <li><img src='/img/red.png' alt='icon'/>Speed<span>{data?.powerstats.speed}</span></li>
-                  <li><img src='/img/red.png' alt='icon'/>Strength<span>{data?.powerstats.strength}</span></li>
+                  <li><img src='./img/red.png' alt='icon'/>Combat<span>{data?.powerstats.combat}</span></li>
+                  <li><img src='./img/red.png' alt='icon'/>Durability<span>{data?.powerstats.durability}</span></li>
+                  <li><img src='./img/red.png' alt='icon'/>Power<span>{data?.powerstats.power}</span></li>
+                  <li><img src='./img/red.png' alt='icon'/>Speed<span>{data?.powerstats.speed}</span></li>
+                  <li><img src='./img/red.png' alt='icon'/>Strength<span>{data?.powerstats.strength}</span></li>
                 </StatsBody>
                 <StatsBody className='biography detail'>
-                  <li><img src='/img/blue.png' alt='icon'/>Alignment<span>{data?.biography.alignment}</span></li>
-                  <li><img src='/img/blue.png' alt='icon'/>Full name<span>{data?.biography['full-name']}</span></li>
-                  <li><img src='/img/blue.png' alt='icon'/>Publisher<span>{data?.biography.publisher}</span></li>
+                  <li><img src='./img/blue.png' alt='icon'/>Alignment<span>{data?.biography.alignment}</span></li>
+                  <li><img src='./img/blue.png' alt='icon'/>Full name<span>{data?.biography['full-name']}</span></li>
+                  <li><img src='./img/blue.png' alt='icon'/>Publisher<span>{data?.biography.publisher}</span></li>
                 </StatsBody>
               </div>
             </Article>
