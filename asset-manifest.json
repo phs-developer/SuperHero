@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SuperHero/static/css/main.ba653f28.css",
-    "main.js": "/SuperHero/static/js/main.40526849.js",
+    "main.js": "/SuperHero/static/js/main.e54fcf7a.js",
     "static/js/787.6910b12d.chunk.js": "/SuperHero/static/js/787.6910b12d.chunk.js",
     "index.html": "/SuperHero/index.html",
     "main.ba653f28.css.map": "/SuperHero/static/css/main.ba653f28.css.map",
-    "main.40526849.js.map": "/SuperHero/static/js/main.40526849.js.map",
+    "main.e54fcf7a.js.map": "/SuperHero/static/js/main.e54fcf7a.js.map",
     "787.6910b12d.chunk.js.map": "/SuperHero/static/js/787.6910b12d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ba653f28.css",
-    "static/js/main.40526849.js"
+    "static/js/main.e54fcf7a.js"
   ]
 }
