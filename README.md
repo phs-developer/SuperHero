@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# 💫💫 SuperHeros 💫💫
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+#### 1. 프로젝트 정보
+    - 개발 기간 : 23.6.1 ~ 23.6.13 (13일)
+    - 사용 스킬 : html, styledComponent, ts, react, axios, ContextAPI
+    - 사이트 링크 : https://phs-developer.github.io/SuperHero
+    
+#### 2. 프로젝트 소개
+    나만의 히어로를 검색하고 히어로의 정보 카드를 확인할 수 있는 사이트입니다.
+    대중적인 히어로뿐만 아니라 다양한 만화나 영화에 등장하는 히어로를 검색할 수 있습니다.
 
-In the project directory, you can run:
 
-### `npm start`
+#### 3. 주요 기능
+    - 자동 완성 기능
+      검색 창에 키워드 입력 시 리스트가 최대 3개까지 노출.
+      리스트에 있는 히어로 클릭 시 결과창으로 이동.
+      
+    - 반응형
+      pc/mobile 모두 자유롭게 이용 가능하도록 반응형으로 구현.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### 4. 화면
+ - pc 버전 </br>
+ ![ezgif com-crop (1)](https://github.com/phs-developer/SuperHero/assets/82524095/0e1c7d5d-027a-4ca3-b8b6-962babc11ac3)
 
-### `npm test`
+ - mobile 버전 </br>
+   ![ezgif com-resize](https://github.com/phs-developer/SuperHero/assets/82524095/ad5a1b93-a361-40f3-98b4-0e0ce6761a12)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
