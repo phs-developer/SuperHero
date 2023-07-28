@@ -3,13 +3,21 @@ import axios from "axios"
 
 const defaultUrl = 'https://superheroapi.com/api.php/3423066867906256/search/'
 
+//인덱스 시그니처
+export interface stringType {
+  [key:string] : string
+}
+
+//데이터 타입, index signature 타입 지정.
 export interface HeroDataType {
+  [key:string] :string | number | stringType ,
   id: number,
   name: string,
   image: {
     url: string
   },
   appearance: {
+    [key:string]:string,
     gender: string,
     'eye-color': string,
     'hair-color': string,
@@ -17,6 +25,7 @@ export interface HeroDataType {
     weight: string
   },
   powerstats: {
+    [key:string]:string,
     combat: string,
     durability: string,
     intelligence: string,
@@ -25,6 +34,7 @@ export interface HeroDataType {
     strength: string
   },
   biography: {
+    [key:string]:string,
     alignment: string,
     'full-name': string,
     publisher: string
@@ -32,9 +42,11 @@ export interface HeroDataType {
 }
 
 // 상세데이터
-export const fetchHero = async (name:string):Promise<HeroDataType | string> => {
+export const fetchHero = async (name:string):Promise<HeroDataType | null> => {
   const data = await axios.get(defaultUrl+name);
-  if(data.data.error) return '없음';
+  console.log(data);
+
+  if(data.data.error) return null;
   const result = data.data.results[0];
 
   return {
