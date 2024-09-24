@@ -1,10 +1,10 @@
-import {FailSection, FailContent} from './style'
+import { FailSection, FailContent } from "./style";
 
 // data 실패
-  export default function Fail () {
+export default function Fail() {
     return (
-      <FailSection>
-        <FailContent>No hero found.</FailContent>
-      </FailSection>
-    )
-  }
+        <FailSection>
+            <FailContent>Hero not found.</FailContent>
+        </FailSection>
+    );
+}

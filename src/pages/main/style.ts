@@ -1,44 +1,55 @@
-import {css} from '@emotion/react'
-import styled from '@emotion/styled';
-import bacImg from '../../asset/img/background.jpg'
+import styled from "@emotion/styled";
 
-const background = css`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-`
-const BackImg = css`
-  position: absolute;
-  top:0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-image: url(${bacImg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
-  z-index: -1;
-`
+const breakpoints = {
+    mobile: "480px",
+    tablet: "768px",
+    pc: "1024px",
+};
+
 const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding-right: 5%;
-  @media screen and (max-width:768px) {
-    align-items: center;
-    padding: 0;
-  }
-`
+    position: relative;
+    :after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    .bg {
+        width: 100%;
+        min-height: 100vh;
+        object-fit: cover;
+    }
+    .inner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        height: 100vh;
+        padding: 4%;
+        z-index: 10;
+        @media (max-width: ${breakpoints.tablet}) {
+            align-items: center;
+            padding-top: 20vh;
+        }
+    }
+`;
 const Title = styled.h1`
-  color: white;
-  font-size: 50px;
-  text-shadow: 3px 3px 5px black, -3px -3px 5px black;
-  margin-bottom: 30px;
-  @media screen and (max-width:768px) {
-    text-align: center;
-  }
-`
+    color: white;
+    font-size: clamp(4rem, 6vw, 10rem);
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 700;
 
-export {background, BackImg, Section, Title}
+    @media (max-width: ${breakpoints.tablet}) {
+        font-size: clamp(2rem, 8vw, 7rem);
+        text-align: center;
+    }
+`;
+
+export { Section, Title };
