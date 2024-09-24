@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/SuperHero/static/css/main.bc222356.css",
-    "main.js": "/SuperHero/static/js/main.6e6fb350.js",
+    "main.js": "/SuperHero/static/js/main.884077ce.js",
     "static/js/453.18f2e47d.chunk.js": "/SuperHero/static/js/453.18f2e47d.chunk.js",
     "static/media/bg.png": "/SuperHero/static/media/bg.b894181f1daa1fc35d16.png",
     "static/media/blue.png": "/SuperHero/static/media/blue.e9efb644880cc5d754f5.png",
     "static/media/red.png": "/SuperHero/static/media/red.702d6dde3fbcde12bda6.png",
     "index.html": "/SuperHero/index.html",
     "main.bc222356.css.map": "/SuperHero/static/css/main.bc222356.css.map",
-    "main.6e6fb350.js.map": "/SuperHero/static/js/main.6e6fb350.js.map",
+    "main.884077ce.js.map": "/SuperHero/static/js/main.884077ce.js.map",
     "453.18f2e47d.chunk.js.map": "/SuperHero/static/js/453.18f2e47d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bc222356.css",
-    "static/js/main.6e6fb350.js"
+    "static/js/main.884077ce.js"
   ]
 }
